@@ -1,20 +1,24 @@
 # Integrate Facebook iOS Application
-Step 1. Create a new project in which you want to integrate facebook.
+1. Create a new project in which you want to integrate facebook.
  
-Step 2. Install pods as mentioned follows              pod 'FacebookCore'              pod 'FacebookLogin'
-             pod 'FBSDKLoginKit'
+2. Install pods as mentioned follows
+* pod 'FacebookCore'            
+* pod 'FacebookLogin'
+* pod 'FBSDKLoginKit'
  
-Step 3. Now go to link mentioned below             https://developers.facebook.com/docs/facebook-login/ios
+3. Now go to link mentioned below  
+
+       https://developers.facebook.com/docs/facebook-login/ios
  
-Step 4. Login to your facebook account and click on create a new app.
+4. Login to your facebook account and click on create a new app.
  
-Step 5. Now fill your app display name and contact mail and click on create app id.
+5. Now fill your app display name and contact mail and click on create app id.
  
-Step 6. Fill your bundle id in the text field given on the web page and click on save button.
+6. Fill your bundle id in the text field given on the web page and click on save button.
  
-Step 7. Now switch on the sign on button given under Enable Single Sign On.
+7. Now switch on the sign on button given under Enable Single Sign On.
  
-Step 8. Now open info.plist and copy code given for configuration on the link after saving your Bundle ID as mentioned below.
+8. Now open info.plist and copy code given for configuration on the link after saving your Bundle ID as mentioned below.
  
 <key>CFBundleURLTypes</key>
 <array>
@@ -37,36 +41,35 @@ Step 8. Now open info.plist and copy code given for configuration on the lin
   <string>fbshareextension</string>
 </array>
 
-Step 9. Add the following to your AppDelegate class. This initializes the SDK when your app launches, and lets the SDK handle results from the native Facebook app when you perform a Login or Share action.
+9. Add the following to your AppDelegate class. This initializes the SDK when your app launches, and lets the SDK handle results from the native Facebook app when you perform a Login or Share action.
 
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-  SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-  return true
-}
+       func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+       SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+       return true
+       }
 
-func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-  return SDKApplicationDelegate.shared.application(app, open: url, options: options)
-}
+       func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool        {
+         return SDKApplicationDelegate.shared.application(app, open: url, options: options)
+       }
 
 
-Login Button
+## Login Button
 
 To add a Facebook login button to your app add the following code snippet to a view controller.
 
-   let fbLoginButton = FBSDKLoginButton()
-        fbLoginButton.readPermissions = ["public_profile","email"]
-    
-        fbLoginButton.center = self.view.center
-        self.view.addSubview(fbLoginButton)
+     let fbLoginButton = FBSDKLoginButton()
+     fbLoginButton.readPermissions = ["public_profile","email"]
+     fbLoginButton.center = self.view.center
+     self.view.addSubview(fbLoginButton)
 
 For performing log in and log out action implement loginButton and loginButtonDidLogOut methods of FBSDKLoginButtonDelegate protocol. 
 For this add following line in viewDidLoad method,
     
-fbLoginButton.delegate = self
+     fbLoginButton.delegate = self
 
 Now write the code that will fetch user profile.
 
-func fetchProfile() {
+    func fetchProfile() {
     
         let request = GraphRequest.init(graphPath: "me", parameters: ["fields":"first_name,last_name, email, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: FacebookCore.GraphAPIVersion.defaultVersion)
         
