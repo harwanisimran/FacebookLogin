@@ -1,25 +1,27 @@
 # Integrate Facebook iOS Application
-1. Create a new project in which you want to integrate facebook.
- 
-2. Install pods as mentioned follows
+Create a new project in which you want to integrate facebook. 
+
+Install pods as mentioned follows
+
 * pod 'FacebookCore'            
 * pod 'FacebookLogin'
 * pod 'FBSDKLoginKit'
- 
-3. Now go to link mentioned below  
+
+Now go to link mentioned below  
 
        https://developers.facebook.com/docs/facebook-login/ios
- 
-4. Login to your facebook account and click on create a new app.
- 
-5. Now fill your app display name and contact mail and click on create app id.
- 
-6. Fill your bundle id in the text field given on the web page and click on save button.
- 
-7. Now switch on the sign on button given under Enable Single Sign On.
- 
-8. Now open info.plist and copy code given for configuration on the link after saving your Bundle ID as mentioned below.
- 
+       
+Login to your facebook account and click on create a new app.
+
+Now fill your app display name and contact mail and click on create app id.
+
+Fill your bundle id in the text field given on the web page and click on save button.
+
+Now switch on the sign on button given under Enable Single Sign On. 
+
+Now open info.plist and copy code given for configuration on the link after saving your Bundle ID as mentioned below.
+
+```
 <key>CFBundleURLTypes</key>
 <array>
   <dict>
@@ -40,8 +42,9 @@
   <string>fbauth2</string>
   <string>fbshareextension</string>
 </array>
+```
 
-9. Add the following to your AppDelegate class. This initializes the SDK when your app launches, and lets the SDK handle results from the native Facebook app when you perform a Login or Share action.
+Add the following to your AppDelegate class. This initializes the SDK when your app launches, and lets the SDK handle results from the native Facebook app when you perform a Login or Share action.
 
        func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
