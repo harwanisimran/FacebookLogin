@@ -65,7 +65,7 @@ To add a Facebook login button to your app add the following code snippet to a v
      fbLoginButton.center = self.view.center
      self.view.addSubview(fbLoginButton)
 
-For performing log in and log out action implement loginButton and loginButtonDidLogOut methods of FBSDKLoginButtonDelegate protocol. 
+For performing log in and log out action implement **loginButton** and **loginButtonDidLogOut** methods of **FBSDKLoginButtonDelegate** protocol. 
 For this add following line in viewDidLoad method,
     
      fbLoginButton.delegate = self
